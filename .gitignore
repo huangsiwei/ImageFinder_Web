@@ -1,0 +1,11 @@
+# IDEA Ignores
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea_modules/
+node_modules/
+# OS X
+.DS_Store
+target/
+*.sublime-*
