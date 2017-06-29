@@ -26,7 +26,7 @@
 
             <div style="float: right;position: relative;margin-top: 10px;width: 250px">
                 <input type="search" name="keyWords" style="float: left;width: 170px" class="form-control"
-                       placeholder="Search Here"/>
+                       placeholder="Search Here" onkeypress="if(event.keyCode==13) {btn.click();return false;}"/>
                 <button class="btn btn-success" style="float: right;" onclick="searchImage()">Search</button>
             </div>
         </div>
@@ -91,6 +91,11 @@
 
     $(function () {
         loadRandomImageList();
+        $('[name=keyWords]').bind('keypress', function (event) {
+            if (13 === event.keyCode) {
+                searchImage();
+            }
+        });
     });
 
     function showDetailModal(uuid) {

@@ -41,7 +41,7 @@ public class ImageController {
         List<Dialogue> copy = new ArrayList<Dialogue>(resultList.getContent());
         Collections.shuffle(copy);
         Map<String, Object> model = new HashMap<String, Object>();
-        List<Dialogue> dialogueList = copy.subList(0, 24);
+        List<Dialogue> dialogueList = copy.subList(0, 16);
         model.put("dialogueList", dialogueList);
         return new ModelAndView("imageContainer", model);
     }
