@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">斗图</a>
+            <a class="navbar-brand" href="javascript:;" onclick="loadRandomImageList()">斗图</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,7 +50,6 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,9 +80,7 @@
         </div>
         <!-- /.row -->
     </footer>
-
 </div>
-
 
 <script src="<@spring.url'/js/jquery-2.2.0.min.js'/>"></script>
 <script src="<@spring.url'/js/bootstrap.js'/>"></script>

@@ -50,7 +50,7 @@ public class ImageController {
     public ModelAndView searchImageByKeyWords(@RequestParam("keyWords") String keyWords) {
         List<Dialogue> resultList = new ArrayList<>();
         if (keyWords != null) {
-            for (String k:keyWords.split(" ") ) {
+            for (String k : keyWords.split(" ")) {
                 resultList.addAll(dialogueRepository.findAllBySimpleTextIgnoreCaseContaining(k));
             }
         }
@@ -58,4 +58,10 @@ public class ImageController {
         model.put("dialogueList", resultList);
         return new ModelAndView("imageContainer", model);
     }
+
+    @RequestMapping("/test")
+    public ModelAndView test() {
+        return new ModelAndView("testCanvas");
+    }
+
 }
