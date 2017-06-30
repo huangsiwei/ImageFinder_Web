@@ -133,13 +133,13 @@
             $container.slideUp();
         } else {
             $container.slideDown();
+            $("#subtitle").val("");
+            var canvas = document.getElementById("subtitleCanvas");
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 700, 540);
             initCanvasContainer()
         }
         $("[name=subtitle]").val();
-    }
-
-    function updateCustomSubtitle() {
-
     }
 
     function initCanvasContainer() {
@@ -154,13 +154,11 @@
         imageObj.onload = function () {
             context.drawImage(imageObj, 0, 0, 700, 540);
         };
-        imageObj.src = $("[name=img-detail]").attr("src");
+        imageObj.src = $("[name=img-detail]").attr("src").replace("orzse20ix","oscyyleav");
     }
 
     //  更新自定义的字幕
     function updateSubtitle() {
-
-
         var subtitle = $("#subtitle").val();
         var canvas = document.getElementById("subtitleCanvas");
         var context = canvas.getContext("2d");
