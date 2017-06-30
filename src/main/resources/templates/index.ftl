@@ -42,12 +42,10 @@
 
     <hr>
 
-    <hr>
-
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,16 +54,34 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="img-container" style="text-align:center">
+                    <div id="imgContainer" style="text-align:center">
                         <img name="img-detail"
                              src="" alt=""
-                             style="width: 350px;height: 270px;">
+                             style="width: 700px;height: 540px;">
+                    </div>
+
+                    <div id="canvasContainer" style="display: none;text-align:center;height: 540px">
+                        <canvas id="imgCanvas"
+                                style="width: 700px;height: 540px;position: relative; left: 0; top: 0; z-index: 0;">
+
+                        </canvas>
+                        <canvas id="subtitleCanvas"
+                                style="width: 700px;height: 540px;position: relative; left: 0; top: -540px; z-index: 1;">
+
+                        </canvas>
+                    </div>
+
+
+                    <div id="customSubtitleContainer" style="display: none">
+                        <input style="width: 400px;margin: 10px auto" type="text" name="subtitle" id="subtitle"
+                               placeholder="输入字幕" class="form-control" oninput="updateSubtitle()">
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">我要改字幕</button>
+                    <button type="button" class="btn btn-primary" onclick="showOrHideCustomSubtitleContainer()">我要改字幕
+                    </button>
                 </div>
             </div>
         </div>
@@ -93,11 +109,70 @@
                 searchImage();
             }
         });
+        $('#myModal').on('hidden.bs.modal', function () {
+            $("#canvasContainer").css("display", "none");
+            $("#imgContainer").css("display", "block");
+            var $container = $("#customSubtitleContainer");
+            if ($container.css("display") === "block") {
+                $container.slideUp();
+            }
+        })
+//        $("[name=subtitle]").onchange(,function () {
+//            updateSubtitle()
+//        })
     });
 
     function showDetailModal(uuid) {
         $("#myModal").modal("show");
         $("#myModal .modal-body [name=img-detail]").attr("src", "http://orzse20ix.bkt.clouddn.com/" + uuid + ".jpg")
+    }
+
+    function showOrHideCustomSubtitleContainer() {
+        var $container = $("#customSubtitleContainer");
+        if ($container.css("display") === "block") {
+            $container.slideUp();
+        } else {
+            $container.slideDown();
+            initCanvasContainer()
+        }
+        $("[name=subtitle]").val();
+    }
+
+    function updateCustomSubtitle() {
+
+    }
+
+    function initCanvasContainer() {
+        $("#canvasContainer").css("display", "block");
+        $("#imgContainer").css("display", "none");
+        var canvas = document.getElementById("imgCanvas");
+        canvas.width = 700;
+        canvas.height = 540;
+        var context = canvas.getContext("2d");
+        context.globalCompositeOperation = "source-over";
+        var imageObj = new Image();
+        imageObj.onload = function () {
+            context.drawImage(imageObj, 0, 0, 700, 540);
+        };
+        imageObj.src = $("[name=img-detail]").attr("src");
+    }
+
+    //  更新自定义的字幕
+    function updateSubtitle() {
+
+
+        var subtitle = $("#subtitle").val();
+        var canvas = document.getElementById("subtitleCanvas");
+        var context = canvas.getContext("2d");
+        context.clearRect(0, 0, 700, 540);
+        context.fillStyle = 'white';
+        context.strokeStyle = 'black';
+        context.font = '10px serif';
+        context.textAlign = "center";
+        context.fillText(subtitle, 150, 140);
+//        context.strokeText(subtitle, 150, 140);
+//        context.fill();
+//        context.stroke();
     }
 
     function loadRandomImageList() {
@@ -117,18 +192,23 @@
 
     function searchImage() {
         var keyWords = $("[name=keyWords]").val();
-        $.ajax({
-            url: "/image/searchImageByKeyWords",
-            method: "POST",
-            dataType: "html",
-            data: {keyWords: keyWords},
-            success: function (html) {
-                $("#resultContainer").html(html)
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
+        if (keyWords !== "") {
+            $.ajax({
+                url: "/image/searchImageByKeyWords",
+                method: "POST",
+                dataType: "html",
+                data: {keyWords: keyWords},
+                success: function (html) {
+                    $("#resultContainer").html(html)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        } else {
+            alert("请输入搜索关键字!")
+        }
+
     }
 
 </script>
