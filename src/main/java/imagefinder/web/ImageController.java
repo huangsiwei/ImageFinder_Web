@@ -55,7 +55,11 @@ public class ImageController {
             }
         }
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("dialogueList", resultList);
+        if (resultList.size() > 50) {
+            model.put("dialogueList", resultList.subList(0,50));
+        } else {
+            model.put("dialogueList", resultList);
+        }
         return new ModelAndView("imageContainer", model);
     }
 
