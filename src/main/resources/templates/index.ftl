@@ -124,7 +124,7 @@
 
     function showDetailModal(uuid) {
         $("#myModal").modal("show");
-        $("#myModal .modal-body [name=img-detail]").attr("src", "http://orzse20ix.bkt.clouddn.com/" + uuid + ".jpg")
+        $("#myModal .modal-body [name=img-detail]").attr("src", "http://ovhl8ni4q.bkt.clouddn.com/" + uuid + ".jpg")
     }
 
     function showOrHideCustomSubtitleContainer() {
@@ -154,7 +154,7 @@
         imageObj.onload = function () {
             context.drawImage(imageObj, 0, 0, 700, 540);
         };
-        imageObj.src = $("[name=img-detail]").attr("src").replace("orzse20ix","oscyyleav");
+        imageObj.src = $("[name=img-detail]").attr("src").replace("ovhl8ni4q","ovhni7gl2");
     }
 
     //  更新自定义的字幕

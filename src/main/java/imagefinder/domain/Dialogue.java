@@ -7,38 +7,39 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Dialogue")
 public class Dialogue {
 
+
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @NotNull
-    private String uuid;
+    private String uid;
     private String simpleText;
     private String rawText;
     private String fileName;
     private String startTime;
     private String endTime;
+    private Boolean hasImage;
+    private Boolean assAdded;
 
     protected Dialogue() {
     }
 
-    public Dialogue(Integer id, String uuid, String simpleText, String rawText, String fileName, String startTime, String endTime) {
-        this.id = id;
-        this.uuid = uuid;
+    public Dialogue(Integer id, String uid, String simpleText, String rawText, String fileName, String startTime,
+                    String endTime, Boolean hasImage, Boolean assAdded) {
+        this.uid = uid;
         this.simpleText = simpleText;
         this.rawText = rawText;
         this.fileName = fileName;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.hasImage = hasImage;
+        this.assAdded = assAdded;
     }
 
-
-    public Integer getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getSimpleText() {
@@ -81,12 +82,19 @@ public class Dialogue {
         this.endTime = endTime;
     }
 
-
-    public String getUuid() {
-        return uuid;
+    public Boolean getHasImage() {
+        return hasImage;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setHasImage(Boolean hasImage) {
+        this.hasImage = hasImage;
+    }
+
+    public Boolean getAssAdded() {
+        return assAdded;
+    }
+
+    public void setAssAdded(Boolean assAdded) {
+        this.assAdded = assAdded;
     }
 }
