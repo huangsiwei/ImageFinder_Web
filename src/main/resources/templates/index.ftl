@@ -1,9 +1,18 @@
 <#import "spring.ftl" as spring/>
 <html>
 <head>
-    <title></title>
+    <title>斗图--根据台词找截图</title>
     <link href="<@spring.url'/css/bootstrap.css'/>" rel="stylesheet"/>
     <link href="<@spring.url'/css/4-col-portfolio.css'/>" rel="stylesheet"/>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c80f6a0fd1575b39849a0414b266713e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 </head>
 
@@ -91,7 +100,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p class="text-muted">Copyright &copy; 斗图 2017 沪ICP备15047920号-2</p>
             </div>
         </div>
         <!-- /.row -->
@@ -122,9 +131,9 @@
 //        })
     });
 
-    function showDetailModal(uuid) {
+    function showDetailModal(uid) {
         $("#myModal").modal("show");
-        $("#myModal .modal-body [name=img-detail]").attr("src", "http://ovhl8ni4q.bkt.clouddn.com/" + uuid + ".jpg")
+        $("#myModal .modal-body [name=img-detail]").attr("src", "http://ovhl8ni4q.bkt.clouddn.com/" + uid + ".jpg")
     }
 
     function showOrHideCustomSubtitleContainer() {
@@ -154,7 +163,7 @@
         imageObj.onload = function () {
             context.drawImage(imageObj, 0, 0, 700, 540);
         };
-        imageObj.src = $("[name=img-detail]").attr("src").replace("ovhl8ni4q","ovhni7gl2");
+        imageObj.src = $("[name=img-detail]").attr("src").replace("ovhl8ni4q", "ovhni7gl2");
     }
 
     //  更新自定义的字幕
