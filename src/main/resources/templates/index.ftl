@@ -6,7 +6,7 @@
     <link href="<@spring.url'/css/4-col-portfolio.css'/>" rel="stylesheet"/>
     <script>
         var _hmt = _hmt || [];
-        (function() {
+        (function () {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?c80f6a0fd1575b39849a0414b266713e";
             var s = document.getElementsByTagName("script")[0];
@@ -97,14 +97,8 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p class="text-muted">Copyright &copy; 斗图 2017 沪ICP备15047920号-2</p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </footer>
+    <#include "base/footer.ftl">
+
 </div>
 
 <script src="<@spring.url'/js/jquery-2.2.0.min.js'/>"></script>
